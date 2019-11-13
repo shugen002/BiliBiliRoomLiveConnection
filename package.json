@@ -1,0 +1,26 @@
+{
+  "name": "bilibililiveroomconnection",
+  "version": "0.0.5",
+  "description": "BiliBili Live Room Connection",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/dd-center/BiliBiliLiveRoomConnection.git"
+  },
+  "keywords": [
+    "Bilibili"
+  ],
+  "author": "shugen",
+  "license": "WTFPL",
+  "bugs": {
+    "url": "https://github.com/dd-center/BiliBiliLiveRoomConnection/issues"
+  },
+  "homepage": "https://github.com/dd-center/BiliBiliLiveRoomConnection#readme",
+  "dependencies": {
+    "goimprotocol": "^1.0.1",
+    "ws": "^7.2.0"
+  }
+}
