@@ -1,6 +1,6 @@
 const EventEmitter = require('events')
 const GoIMProtocol = require('goimprotocol')
-const pako = require('pako')
+const zlib = require('zlib')
 
 class BiliBiliLiveRoomConnection extends EventEmitter {
     /**
@@ -84,7 +84,7 @@ class BiliBiliLiveRoomConnection extends EventEmitter {
     __onMessage (packet) {
         try {
             if (packet.protocolVersion === 2) {
-                this.__connection.__onData.bind(this.__connection)(Buffer.from(pako.inflate(packet.body)))
+                this.__connection.__onData.bind(this.__connection)(Buffer.from(zlib.inflateSync(packet.body)))
             } else {
                 const message = JSON.parse(packet.body.toString())
                 this.emit('*', message)
