@@ -7,8 +7,9 @@ class BiliBiliLiveRoomConnection extends EventEmitter {
      * 房间连接，记得调用connect才会连接
      * @param {Number} roomId 房间号
      * @param {"ws"|"wss"|"tcp"} type 连接类型
+     * @param {0|2} version 版本，只有需要zlib压缩过的时候才需要给这个值
      */
-    constructor (roomId = 912226, type = 'ws', version = 2) {
+    constructor (roomId = 912226, type = 'ws', version = 0) {
         super()
         this.roomId = roomId
         this.type = type
@@ -50,6 +51,8 @@ class BiliBiliLiveRoomConnection extends EventEmitter {
         this.__connection.on('connect', this.__onConnect.bind(this))
         this.__connection.on('AuthSucceeded', this.__onAuthSucceeded.bind(this))
         this.__connection.on('message', this.__onMessage.bind(this))
+        this.__connection.on('error', this.__onError.bind(this))
+        this.__connection.on('close', this.__onClose.bind(this))
         this.__connection.connect()
     }
 
@@ -84,12 +87,12 @@ class BiliBiliLiveRoomConnection extends EventEmitter {
                 this.__connection.__onData.bind(this.__connection)(Buffer.from(pako.inflate(packet.body)))
             } else {
                 const message = JSON.parse(packet.body.toString())
+                this.emit('*', message)
                 if (message.cmd) {
                     this.emit(message.cmd, message)
                 } else {
                     this.emit('unknownCmd', message)
                 }
-                this.emit('*', message)
             }
         } catch (error) {
             this.emit('error', error)
