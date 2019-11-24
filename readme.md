@@ -27,11 +27,11 @@ Room(房间号,协议,版本)
 然后我们监听下弹幕事件并且处理一下然后log出来吧
 ```
 room.on('DANMU_MSG', (message) => {
-    const decodedMessage = Room.danmuMessageDecoder(message)
+    const decodedMessage = Room.danmakuMessageDecoder(message)
     console.log(`${decodedMessage.userInfo.uname} : ${decodedMessage.comment}`)
 })
 ```
-其中 Room.danmuMessageDecoder 是内置的我个人总结的弹幕消息解析器，欢迎大家来帮我补充扩展。
+其中 Room.danmakuMessageDecoder 是内置的我个人总结的弹幕消息解析器，欢迎大家来帮我补充扩展。
 
 你想要监听什么事件就对应的
 ```

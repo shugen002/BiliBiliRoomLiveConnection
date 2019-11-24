@@ -8,6 +8,6 @@ room.on('authSucceeded', () => {
 })
 room.on('*', console.log) // 输出所有的消息
 room.on('DANMU_MSG', (message) => {
-    const decodedMessage = Room.danmuMessageDecoder(message)
+    const decodedMessage = Room.danmakuMessageDecoder(message)
     console.log(`${decodedMessage.userInfo.uname} : ${decodedMessage.comment}`)
 })

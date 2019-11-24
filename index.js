@@ -108,7 +108,7 @@ class BiliBiliLiveRoomConnection extends EventEmitter {
      * 弹幕解析，恶心的DANMU_MSG的终结者，这是我已知的，欢迎PR和我一起解析
      * @param {any} message 消息
      */
-    static danmuMessageDecoder (message) {
+    static danmakuMessageDecoder (message) {
         var result = {}
         result.comment = message.info[1]
         result.danmakuSetting = {
